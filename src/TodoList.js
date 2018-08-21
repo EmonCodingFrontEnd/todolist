@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import TodoItem from './TodoItem';
+import './style.css'
 
 // 定义一个React组件
 class TodoList extends Component {
@@ -17,16 +18,16 @@ class TodoList extends Component {
         this.handleDelete = this.handleDelete.bind(this)
     }
 
+    handleInputChange(e) {
+        this.setState({
+            inputValue: e.target.value
+        })
+    }
+
     handleBtnClick() {
         this.setState({
             list: [...this.state.list, this.state.inputValue],
             inputValue: ''
-        })
-    }
-
-    handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
         })
     }
 
@@ -56,7 +57,13 @@ class TodoList extends Component {
         return (
             <Fragment>
                 <div>
-                    <input value={this.state.inputValue} onChange={this.handleInputChange}/>
+                    {/*下面是一个input框*/}
+                    {
+                        // 来一个单行注释
+                    }
+                    <label htmlFor={'insertArea'}>输入内容</label>
+                    <input id="insertArea" className={'input'} value={this.state.inputValue}
+                           onChange={this.handleInputChange}/>
                     <button className={'red-btn'} onClick={this.handleBtnClick}>add</button>
                 </div>
                 <ul>{this.getTodoItems()}</ul>
