@@ -19,25 +19,26 @@ class TodoList extends Component {
     }
 
     handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
-        })
+        const value = e.target.value;
+        this.setState(() => ({
+            inputValue: value
+        }))
     }
 
     handleBtnClick() {
-        this.setState({
-            list: [...this.state.list, this.state.inputValue],
+        this.setState((prevState) => ({
+            list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        })
+        }));
     }
 
     // 父组件通过属性的形式向子组件传递参数，子组件通过props接受父组件传递的参数
 
     handleDelete(index) {
-        const list = [...this.state.list];
-        list.splice(index, 1);
-        this.setState({
-            list: list
+        this.setState((prevState) => {
+            const list = [...prevState.list];
+            list.splice(index, 1);
+            return {list}
         })
     }
 
@@ -45,10 +46,11 @@ class TodoList extends Component {
         return (
             this.state.list.map((item, index) => {
                 return (<TodoItem
-                    deleteItem={this.handleDelete}
                     key={index}
                     content={item}
-                    index={index}/>)
+                    index={index}
+                    deleteItem={this.handleDelete}
+                />)
             })
         )
     }
@@ -62,7 +64,9 @@ class TodoList extends Component {
                         // 来一个单行注释
                     }
                     <label htmlFor={'insertArea'}>输入内容</label>
-                    <input id="insertArea" className={'input'} value={this.state.inputValue}
+                    <input id="insertArea"
+                           className={'input'}
+                           value={this.state.inputValue}
                            onChange={this.handleInputChange}/>
                     <button className={'red-btn'} onClick={this.handleBtnClick}>add</button>
                 </div>
