@@ -31,6 +31,7 @@ class TodoItem extends Component {
     }
 
     render() {
+        console.log('child render');
         const {content, test} = this.props;
         // JSX -> createElement -> 虚拟DOM（JS对象） -> 真实的DOM对象
         // return React.createElement('div', {}, 'item');

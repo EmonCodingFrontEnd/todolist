@@ -65,7 +65,7 @@ class TodoList extends Component {
     }
 
     render() {
-        console.log('render');
+        console.log('parent render');
         return (
             <Fragment>
                 <div>
