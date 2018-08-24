@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import TodoItem from './TodoItem';
-import Test from './Test';
+import axios from 'axios';
 import './style.css'
 
 // 定义一个React组件
@@ -31,13 +31,10 @@ class TodoList extends Component {
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }), () => {
-            console.log(this.ul.querySelectorAll('div').length);
-        });
+        }));
     }
 
     // 父组件通过属性的形式向子组件传递参数，子组件通过props接受父组件传递的参数
-
     handleDelete(index) {
         this.setState((prevState) => {
             const list = [...prevState.list];
@@ -59,13 +56,8 @@ class TodoList extends Component {
         )
     }
 
-    // 在组件即将被挂载到页面的时刻自动执行
-    componentWillMount() {
-        console.log('componentWillMount');
-    }
-
     render() {
-        console.log('parent render');
+        console.log("render");
         return (
             <Fragment>
                 <div>
@@ -81,36 +73,23 @@ class TodoList extends Component {
                     />
                     <button className={'red-btn'} onClick={this.handleBtnClick}>add</button>
                 </div>
-                <ul ref={(ul) => {
-                    this.ul = ul
-                }}>{this.getTodoItems()}</ul>
-                <Test content={this.state.inputValue}/>
+                <ul>{this.getTodoItems()}</ul>
             </Fragment>
         );
     }
 
-    // 组件被挂载到页面之后自动执行
     componentDidMount() {
-        console.log('componentDidMount');
+        axios.get('/api/todolist')
+            .then((res) => {
+                console.log(res);
+                this.setState(() => ({
+                    list: [...res.data]
+                }))
+            })
+            .catch(() => {
+                alert('error');
+            })
     }
-
-    // 在组件被更新之前，会自动被执行
-    shouldComponentUpdate() {
-        console.log('shouldComponentUpdate');
-        // true:需要执行;false:不需要执行
-        return true;
-    }
-
-    // 组件被更新之前，它会自动执行；但会在shouldComponentUpdate返回true情况下
-    componentWillUpdate() {
-        console.log('componentWillUpdate');
-    }
-
-    // 在组件被更新之后，会被执行
-    componentDidUpdate() {
-        console.log('componentDidUpdate');
-    }
-
 
 }
 
