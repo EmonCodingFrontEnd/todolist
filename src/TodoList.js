@@ -1,9 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import TodoItem from './TodoItem';
-import axios from 'axios';
 import {Input, Button, List} from 'antd';
 import store from './store';
 import {getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
+import axios from 'axios';
 import './style.css'
 import 'antd/dist/antd.css';
 
@@ -74,16 +73,6 @@ class TodoList extends Component {
                             <List.Item onClick={this.handleItemDelete.bind(this, index)}>{item}</List.Item>)}
                     />
                 </div>
-                {/*<div>
-                    <label htmlFor={'insertArea'}>输入内容</label>
-                    <input id="insertArea"
-                           className={'input'}
-                           value={this.state.inputValue}
-                           onChange={this.handleInputChange}
-                    />
-                    <button className={'red-btn'} onClick={this.handleBtnClick}>add</button>
-                </div>
-                <ul>{this.getTodoItems()}</ul>*/}
             </Fragment>
         );
     }

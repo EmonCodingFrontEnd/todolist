@@ -6,6 +6,7 @@ const defaultStore = {
 };
 
 // reducer可以接收state，但是不能修改state
+// 纯函数：给定固定的输入，就一定会有固定输出，而不会有任何副作用。
 export default (state = defaultStore, action) => {
     if (action.type === CHANGE_INPUT_VALUE) {
         const newState = JSON.parse(JSON.stringify(state));
