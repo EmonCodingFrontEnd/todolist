@@ -4,7 +4,9 @@ import {
     getInputChangeAction,
     getAddItemAction,
     getDeleteItemAction,
-    getTodoList
+    // getTodoList,
+    // initListAction,
+    getInitList
 } from './store/actionCreators'
 import TodoListUI from './TodoListUI';
 import 'antd/dist/antd.css';
@@ -55,8 +57,16 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
+        /*
+        ReduxThunk-2
         const action = getTodoList();
+        store.dispatch(action);*/
+
+        // ReduxSaga-6
+        const action = getInitList();
         store.dispatch(action);
+
+
     }
 
 }

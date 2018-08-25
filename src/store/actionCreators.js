@@ -1,5 +1,5 @@
-import {ADD_TODO_ITEM, CHANGE_INPUT_VALUE, DELETE_TODO_ITEM, INIT_LIST_ACTION} from "./actionTypes";
-import axios from "axios/index";
+import {ADD_TODO_ITEM, CHANGE_INPUT_VALUE, DELETE_TODO_ITEM, INIT_LIST_ACTION, GET_INIT_LIST} from "./actionTypes";
+// import axios from "axios/index";
 
 export const getInputChangeAction = (value) => ({
     type: CHANGE_INPUT_VALUE,
@@ -16,6 +16,8 @@ export const initListAction = (data) => ({
     type: INIT_LIST_ACTION,
     data
 });
+/*
+ReduxThunk-1
 export const getTodoList = () => {
     return (dispatch) => {
         axios.get('/list')
@@ -28,4 +30,9 @@ export const getTodoList = () => {
                 alert('error');
             })
     }
-};
+};*/
+
+// ReduxSaga-7
+export const getInitList = () => ({
+    type: GET_INIT_LIST
+});
