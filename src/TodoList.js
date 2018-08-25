@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import store from './store';
-import {getInputChangeAction, getAddItemAction, getDeleteItemAction} from './store/actionCreators'
+import {
+    getInputChangeAction,
+    getAddItemAction,
+    getDeleteItemAction,
+    getTodoList
+} from './store/actionCreators'
 import TodoListUI from './TodoListUI';
-import axios from 'axios';
-import './style.css'
 import 'antd/dist/antd.css';
-
-const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-];
 
 // 定义一个React组件
 class TodoList extends Component {
@@ -59,18 +54,10 @@ class TodoList extends Component {
         />;
     }
 
-    /*componentDidMount() {
-        axios.get('/api/todolist')
-            .then((res) => {
-                console.log(res);
-                this.setState(() => ({
-                    list: [...res.data]
-                }))
-            })
-            .catch(() => {
-                alert('error');
-            })
-    }*/
+    componentDidMount() {
+        const action = getTodoList();
+        store.dispatch(action);
+    }
 
 }
 
